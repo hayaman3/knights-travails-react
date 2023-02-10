@@ -77,15 +77,18 @@ const coordinates = [
 function App() {
   return (
     <div className="App">
-      {coordinates.map((position) => (
-        <div
-          className="tile"
-          data-coordinates={position}
-          onClick={(e) => buttonClicked(e)}
-        >
-          {position}
-        </div>
-      ))}
+      <div className="board">
+        {coordinates.map((position) => (
+          <div
+            className="tile"
+            data-coordinates={position}
+            key={position}
+            onClick={(e) => buttonClicked(e)}
+          >
+            {position}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
