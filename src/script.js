@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 const knightTravails = (start, end) => {
 	const board = Board();
 	if (
@@ -8,7 +9,7 @@ const knightTravails = (start, end) => {
 	}
 
 	// find path
-	let queue = [start];
+	const queue = [start];
 	while (queue.length !== 0) {
 		// remove node
 		// in practice: use a real queue class to dequeue in 0(1) instead 0(n) time
@@ -46,27 +47,25 @@ const knightTravails = (start, end) => {
 
 const Board = (size = 8) => {
 	// 2d array to
-	let visited = [];
-	for (let i = 0; i < size; i++) {
-		let row = [];
-		for (let j = 0; j < size; j++) {
+	const visited = [];
+	for (let i = 0; i < size; i += 1) {
+		const row = [];
+		for (let j = 0; j < size; j += 1) {
 			row.push(false);
 		}
 		visited.push(row);
 	}
 
-	let lastCoord = [];
-	for (let i = 0; i < size; i++) {
-		let row = [];
-		for (let j = 0; j < size; j++) {
+	const lastCoord = [];
+	for (let i = 0; i < size; i += 1) {
+		const row = [];
+		for (let j = 0; j < size; j += 1) {
 			row.push(false);
 		}
 		lastCoord.push(row);
 	}
 
-	const isValidCoord = (row, col) => {
-		return row >= 0 && row < size && col >= 0 && col < size;
-	};
+	const isValidCoord = (row, col) => row >= 0 && row < size && col >= 0 && col < size;
 
 	const getPossiblePath = (row, col) => {
 		const directions = [
@@ -87,4 +86,6 @@ const Board = (size = 8) => {
 	return { visited, lastCoord, isValidCoord, getPossiblePath };
 };
 
-console.log(knightTravails([0, 0], [1, 1]));
+// console.log(knightTravails([0, 0], [1, 1]));
+
+export default knightTravails
