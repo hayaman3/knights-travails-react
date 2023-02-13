@@ -21,18 +21,24 @@
 .board {
   display: grid;
   grid-template-columns: repeat(8, 60px);
+  border-radius: 10px;
   justify-content: center;
   align-content: center;
-  border: 1px solid rgb(255, 255, 255);
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 12px, rgba(0, 0, 0, 0.23) 0px 3px 12px;
+  box-shadow: rgba(43, 43, 43, 0.5) 0px 3px 8px, rgba(63, 63, 63, 0.5) 0px 3px 8px;
+  overflow: hidden;
 }
 
 .tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 60px;
   height: 60px;
   cursor: pointer;
   padding: 8px;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.1);
+  font-size: 2rem;
+
 }
 
 
@@ -68,9 +74,12 @@
 .tile:nth-child(60),
 .tile:nth-child(62),
 .tile:nth-child(64) {
-  background: rgba(255, 255, 255, 0.45);
-  /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); */
+  background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(1.5px);
   -webkit-backdrop-filter: blur(1.5px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+#starting-horse {
+  text-align: center;
+  color: rgb(32, 32, 32)
 }

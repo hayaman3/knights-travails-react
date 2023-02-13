@@ -1,17 +1,9 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React from 'react';
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import knightTravails from './script';
-
-const buttonClicked = (e) => {
-  // console.log(e.target.dataset.coordinates);
-  // // return e;
-  const target = e.target.dataset.coordinates;
-  // console.log([target]);
-  // console.log([0, 1]);
-
-  knightTravails([1, 1], [target]);
-};
 
 const coordinates = [
   [0, 0],
@@ -88,17 +80,33 @@ const coordinates = [
 ];
 
 function App() {
+  const [isActive, setIsActive] = useState(null);
+
+  const buttonClicked = (e, i) => {
+    const target = e.target.dataset.coordinates.split(',');
+    knightTravails([0, 0], target);
+    // document.getElementById
+    setIsActive(i);
+  };
+
   return (
     <div className="App">
       <div className="board">
-        {coordinates.map((position) => (
+        {coordinates.map((position, i) => (
           <div
             className="tile"
             data-coordinates={position}
-            key={position}
-            onClick={(e) => buttonClicked(e)}
+            key={i}
+            onClick={(e) => buttonClicked(e, i)}
           >
-            {position}
+            {isActive === i ? (
+              <FontAwesomeIcon
+                icon="fa-solid fa-chess-knight"
+                id="starting-horse"
+              />
+            ) : (
+              ''
+            )}
           </div>
         ))}
       </div>
