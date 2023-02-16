@@ -3,7 +3,12 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
 import knightTravails from './script';
+
+library.add(fas, far);
 
 const coordinates = [
   [0, 0],
@@ -81,16 +86,22 @@ const coordinates = [
 
 function App() {
   const [isActive, setIsActive] = useState(null);
-
+  const [start, setStart] = useState(true);
   const buttonClicked = (e, i) => {
-    const target = e.target.dataset.coordinates.split(',');
-    knightTravails([0, 0], target);
-    // document.getElementById
-    setIsActive(i);
+    if (start) {
+      const target = e.target.dataset.coordinates.split(',');
+      knightTravails([0, 0], target);
+      // document.getElementById
+      setIsActive(i);
+      setStart(false);
+    }
   };
 
   return (
     <div className="App">
+      <h1 className="board-state">
+        {start ? 'Select Starting Position' : 'Select Target'}
+      </h1>
       <div className="board">
         {coordinates.map((position, i) => (
           <div
@@ -107,9 +118,21 @@ function App() {
             ) : (
               ''
             )}
+            {isActive === i ? (
+              <FontAwesomeIcon
+                icon="fa-solid fa-chess-knight"
+                id="starting-horse"
+              />
+            ) : (
+              ''
+            )}
           </div>
         ))}
       </div>
+      <p className="instruction">
+        Shows the shortest possible way for a knight to go one square
+        to another
+      </p>
     </div>
   );
 }

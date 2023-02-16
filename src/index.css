@@ -13,6 +13,8 @@
 .App {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  gap: 20px;
   justify-content: center;
   align-items: center;
   background-image: radial-gradient(circle at center left, rgb(207, 135, 220), rgb(59, 104, 195));
@@ -26,6 +28,14 @@
   align-content: center;
   box-shadow: rgba(43, 43, 43, 0.5) 0px 3px 8px, rgba(63, 63, 63, 0.5) 0px 3px 8px;
   overflow: hidden;
+}
+
+.board-state {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.instruction {
+  color: rgba(0, 0, 0, 0.9);
 }
 
 .tile {
@@ -83,3 +93,9 @@
   text-align: center;
   color: rgb(32, 32, 32)
 }
+
+.buttons {
+  display: flex;
+}
+
+/* .buttons >div */
