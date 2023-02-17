@@ -31,11 +31,12 @@
 }
 
 .board-state {
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.6);
+
 }
 
-.instruction {
-  color: rgba(0, 0, 0, 0.9);
+.information {
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .tile {
@@ -48,9 +49,7 @@
   padding: 8px;
   background-color: rgba(0, 0, 0, 0.1);
   font-size: 2rem;
-
 }
-
 
 .tile:nth-child(1),
 .tile:nth-child(3),

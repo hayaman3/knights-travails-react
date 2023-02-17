@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -85,17 +86,34 @@ const coordinates = [
 ];
 
 function App() {
-  const [isActive, setIsActive] = useState(null);
+  const [startingPointIndex, setStartingPointIndex] = useState(null);
   const [start, setStart] = useState(true);
-  const buttonClicked = (e, i) => {
+  const [paths, setPaths] = useState([]);
+  // let startPosition = ""
+  const handleClick = (i) => {
     if (start) {
-      const target = e.target.dataset.coordinates.split(',');
-      knightTravails([0, 0], target);
-      // document.getElementById
-      setIsActive(i);
+      setStartingPointIndex(i);
       setStart(false);
+      // // setValidPositions(knightTravails([0, 0], target));
+      // console.log(knightTravails([0, 0], target));
+    } else {
+      // const target = e.target.dataset.coordinates;
+      setPaths(
+        knightTravails(
+          coordinates[startingPointIndex],
+          coordinates[i]
+        )
+      );
+
+      // console.log(coordinates[i]);
+      // console.log(coordinates[target]);
+
+      // console.log(coordinates[target] === coordinates[i]);
+      // console.log();
     }
   };
+
+  React.useEffect(() => console.log(paths), [paths]);
 
   return (
     <div className="App">
@@ -106,30 +124,28 @@ function App() {
         {coordinates.map((position, i) => (
           <div
             className="tile"
-            data-coordinates={position}
-            key={i}
-            onClick={(e) => buttonClicked(e, i)}
+            key={position}
+            onClick={() => handleClick(i)}
           >
-            {isActive === i ? (
+            {startingPointIndex === i ? (
               <FontAwesomeIcon
                 icon="fa-solid fa-chess-knight"
                 id="starting-horse"
               />
-            ) : (
-              ''
-            )}
-            {isActive === i ? (
-              <FontAwesomeIcon
-                icon="fa-solid fa-chess-knight"
-                id="starting-horse"
-              />
-            ) : (
-              ''
+            ) : null}
+
+            {paths.map((path) =>
+              path === coordinates[i] ? (
+                <FontAwesomeIcon
+                  key={i}
+                  icon="fa-solid fa-chess-knight"
+                />
+              ) : null
             )}
           </div>
         ))}
       </div>
-      <p className="instruction">
+      <p className="information">
         Shows the shortest possible way for a knight to go one square
         to another
       </p>

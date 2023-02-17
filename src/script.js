@@ -40,8 +40,9 @@ const knightTravails = (start, end) => {
 	path.unshift(start);
 
 	// output
-	console.log(` => You made it in ${path.length} moves!  Here's your path:`);
-	path.forEach((coord) => console.log(coord));
+	// console.log(` => You made it in ${path.length} moves!  Here's your path:`);
+	// path.forEach((coord) => console.log(coord));
+	// console.log(path)
 	return path;
 };
 
@@ -86,6 +87,5 @@ const Board = (size = 8) => {
 	return { visited, lastCoord, isValidCoord, getPossiblePath };
 };
 
-// console.log(knightTravails([0, 0], [1, 1]));
 
 export default knightTravails
