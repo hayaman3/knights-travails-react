@@ -38,11 +38,6 @@ const knightTravails = (start, end) => {
 		curCoord = board.lastCoord[curCoord[0]][curCoord[1]];
 	}
 	path.unshift(start);
-
-	// output
-	// console.log(` => You made it in ${path.length} moves!  Here's your path:`);
-	// path.forEach((coord) => console.log(coord));
-	// console.log(path)
 	return path;
 };
 

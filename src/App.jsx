@@ -1,6 +1,4 @@
 /* eslint-disable no-else-return */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
@@ -90,7 +88,8 @@ function App() {
   const [startingPointIndex, setStartingPointIndex] = useState(null);
   const [start, setStart] = useState(true);
   const [paths, setPaths] = useState([]);
-  // let startPosition = ""
+  // const [resetButton, setResetButton] = useState(false);
+
   const handleClick = (i) => {
     if (start) {
       setStartingPointIndex(i);
@@ -105,11 +104,18 @@ function App() {
     }
   };
 
+  const reset = () => {
+    setStartingPointIndex(null);
+    setStart(true);
+    setPaths([]);
+  };
+
   return (
     <div className="App">
       <h1 className="board-state">
         {start ? 'Select Starting Position' : 'Select Target'}
       </h1>
+
       <div className="board">
         {coordinates.map((position, i) => (
           <div
@@ -118,10 +124,13 @@ function App() {
             onClick={() => handleClick(i)}
           >
             {startingPointIndex === i ? (
-              <FontAwesomeIcon
-                icon="fa-solid fa-chess-knight"
-                id="starting-horse"
-              />
+              <>
+                <FontAwesomeIcon
+                  icon="fa-solid fa-chess-knight"
+                  id="starting-horse"
+                />
+                <p className="progression">S</p>
+              </>
             ) : null}
 
             {paths.map((path, index, arr) => {
@@ -131,13 +140,16 @@ function App() {
               ) {
                 if (arr.length - 1 === index)
                   return (
-                    <FontAwesomeIcon icon="fa-solid fa-chess-knight" />
+                    <>
+                      <FontAwesomeIcon icon="fa-solid fa-chess-knight" />
+                      <p className="progression">F</p>
+                    </>
                   );
                 else {
                   return (
                     <>
                       <FontAwesomeIcon icon="fa-solid fa-chess-knight" />
-                      <p className="progression">{index}</p>
+                      <p className="progression">{index + 1}</p>
                     </>
                   );
                 }
@@ -148,10 +160,14 @@ function App() {
           </div>
         ))}
       </div>
-      <p className="information">
-        Shows the shortest possible way for a knight to go one square
-        to another
-      </p>
+
+      <button
+        type="button"
+        onClick={reset}
+        style={{ visibility: !start ? 'visible' : 'hidden' }}
+      >
+        New Starting Position
+      </button>
     </div>
   );
 }
