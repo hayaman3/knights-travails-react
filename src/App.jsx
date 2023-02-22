@@ -88,7 +88,6 @@ function App() {
   const [startingPointIndex, setStartingPointIndex] = useState(null);
   const [start, setStart] = useState(true);
   const [paths, setPaths] = useState([]);
-  // const [resetButton, setResetButton] = useState(false);
 
   const handleClick = (i) => {
     if (start) {

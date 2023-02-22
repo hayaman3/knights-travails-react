@@ -82,5 +82,4 @@ const Board = (size = 8) => {
 	return { visited, lastCoord, isValidCoord, getPossiblePath };
 };
 
-
 export default knightTravails
